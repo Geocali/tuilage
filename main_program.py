@@ -32,6 +32,8 @@ foo=imp.load_source('xml_carte', path_prog + 'xml_carte.py')
 dossier_in=dossier_out
 mapfile=dossier_in + '/calepinage.xml'
 points_in=path_drawings + nom_dwg[:-4] + '/3_georef_images/pts_georef_finaux.csv'
+# pour mapnik, il faut que le repertoire courant soit celui au dessus du fichier xml
+os.chdir(path_drawings + nom_dwg[:-4] + '/')
 foo.xmlage(dossier_in, srs2, mapfile, points_in)
 
 # ---- puis on crée les tuiles ----
