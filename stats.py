@@ -4,7 +4,7 @@ import os, time, csv
 def stats(chemin_dossier):
 	# 1) fichiers png imprimes par Autocad
 	autocad=[]
-	for dirname, dirnames, filenames in os.walk(chemin_dossier):
+	for dirname, dirnames, filenames in os.walk(chemin_dossier + '2_printed_images/'):
 		# print path to all subdirectories first.
 		for subdirname in dirnames:
 			chemin=os.path.join(dirname, subdirname)
@@ -18,7 +18,7 @@ def stats(chemin_dossier):
 				
 	# 2) fichiers tif georeferences
 	georeference=[]
-	for dirname, dirnames, filenames in os.walk(chemin_dossier):
+	for dirname, dirnames, filenames in os.walk(chemin_dossier + '3_georef_images/'):
 		# print path to all subdirectories first.
 		for subdirname in dirnames:
 			chemin=os.path.join(dirname, subdirname)
@@ -32,7 +32,7 @@ def stats(chemin_dossier):
 				
 	# 3) tuiles
 	tuiles=[]
-	for dirname, dirnames, filenames in os.walk(chemin_dossier):
+	for dirname, dirnames, filenames in os.walk(chemin_dossier + '4_tiles'):
 		# print path to all subdirectories first.
 		for subdirname in dirnames:
 			chemin=os.path.join(dirname, subdirname)
@@ -44,7 +44,7 @@ def stats(chemin_dossier):
 				tuiles.append(time.ctime(os.path.getmtime(chemin)))
 	tuiles.sort()
 
-	file = open(chemin_dossier + '\\stats.txt','w')   # Trying to create a new file or open one
+	file = open(chemin_dossier + 'stats.txt','w')   # Trying to create a new file or open one
 	for kp in autocad:
 		file.write('autocad;' + kp + '\n')
 	for kp in georeference:
