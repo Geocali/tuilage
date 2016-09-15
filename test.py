@@ -1,18 +1,21 @@
 import os
+#os.chdir('/home/cvial')
+#os.system('ls')
+import csv
 
-print("Path at terminal when executing this file")
-print(os.getcwd() + "\n")
+# os.chdir('/home/cvial/data/drawings/LB00_2016-03-16/2_printed_images/')
+# os.system('ls')
+# print('iop')
 
-print("This file path, relative to os.getcwd()")
-print(__file__ + "\n")
+# csvfile=open('/home/cvial/data/drawings/LB00_2016-03-16/2_printed_images/pts_carres.csv', 'r')
+# reader=csv.reader(csvfile, delimiter=" ")
+# pts_ref=[]
+# for row in reader:
+	# pts_ref.append(row)
+	# print('a')
+# print(pts_ref)
 
-print("This file full path (following symlinks)")
-full_path = os.path.realpath(__file__)
-print(full_path + "\n")
-
-print("This file directory and name")
-path, filename = os.path.split(full_path)
-print(path + ' --> ' + filename + "\n")
-
-print("This file directory only")
-print(os.path.dirname(full_path))
+listing = os.listdir('/home/cvial/data/drawings/LB00_2016-03-16/3_georef_images/')
+print(listing)
+listing.sort()
+print(listing)

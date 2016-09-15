@@ -2,16 +2,13 @@
 # -*- coding: UTF-8 -*-
 
 from math import pi,cos,sin,log,exp,atan
-import sys, os
+import sys, os, time
 import dispy
 
 import mapnik
 
 DEG_TO_RAD = pi/180
 RAD_TO_DEG = 180/pi
-
-# Default number of rendering threads to spawn, should be roughly equal to number of CPU cores available
-NUM_THREADS = 1
 
 
 def minmax (a,b,c):
@@ -113,6 +110,7 @@ def render_tile(x, y, z, mapfile, maxZoom, tile_uri, i_tuile, name):
 			empty = " Empty Tile "
 		print name, ":", z, x, y, exists, empty, "(tuile ", i_tuile, ")"
 		# !!!!!!!!!!!!!! fin insertion loop
+
 		 
 def render_tiles(bbox, mapfile, tile_dir, minZoom=1,maxZoom=18, name="unknown", ip_master='192.168.99.100', ip_nodes=['192.168.99.101', '192.168.99.102', '192.168.99.103']):
 	#print "render_tiles(",bbox, mapfile, tile_dir, minZoom,maxZoom, name,")"
@@ -160,17 +158,44 @@ def render_tiles(bbox, mapfile, tile_dir, minZoom=1,maxZoom=18, name="unknown", 
 				print('job envoyé' + str(i_tuile))
 				job.id = i_tuile
 				jobs.append(job)
-				
-				
+	
+	print(str(i_tuile) + ' tuiles à faire !')
+	# nb_done = 0
+	# print('nb tuiles : ' + str(i_tuile))
+	# while nb_done < i_tuile:
+		# print('nb_done ' + str(nb_done))
+		# time.sleep(5)
+		# nb_done_i=0
+		# for job in jobs:
+			# print('job')
+			# if not(job is None):
+				# nb_done_i = nb_done_i +1
+		# if nb_done_i > nb_done:
+			# nb_done = nb_done_i
+			# print(str(nb_done) + '/' + str(i_tuile))
+	
+	# tuiles=0
+	# while tuiles < i_tuile:
+		# time.sleep(1)
+		# tuile_f=0
+		# for dirname, dirnames, filenames in os.walk(tile_dir):
+			#print path to all subdirectories first.
+			# for subdirname in dirnames:
+				# chemin=os.path.join(dirname, subdirname)
+				#print(time.ctime(os.path.getmtime(chemin)))
+			#print path to all filenames.
+			# for filename in filenames:
+				# chemin=os.path.join(dirname, filename)
+				# if filename[-3:]=='png' and filename[:3]!='img':
+					# tuile_f=tuile_f+1
+		# if tuile_f > tuiles:
+			# tuiles = tuile_f
+			# print('done : ' + str(tuiles) + '/' + str(i_tuile))
+		# print(str())
+		
 	cluster.wait()
-	for job in jobs:
-		print('====================================')
-		print(job.stdout)
-		print('ip address of the node : ' + job.ip_addr)
-		print('end time : ' + str(job.end_time))
-		print('====================================')
 	print('nombre total de tuiles : ' + str(i_tuile))
-
+	cluster.print_status()
 	
 
 

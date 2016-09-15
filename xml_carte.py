@@ -19,6 +19,8 @@ def xmlage(dossier_in, srs2, file_output, fichier_pts):
 	file.write('<Map srs=' + srs2 + ' background-color="rgb(128,128,160)">\n')
 	
 	listing = os.listdir(dossier_in)
+	listing.sort()
+	
 	i=0
 	for infile in listing:
 		

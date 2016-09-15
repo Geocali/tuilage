@@ -17,12 +17,12 @@ def georef(dossier_in, dossier_out, srs1, srs2):
 	pts_ref=[]
 	for row in reader:
 		pts_ref.append(row)
-	
 		
 	# ========= on géoréférencie l'image
 	# --- liste des images à traiter
 	
 	listing = os.listdir(dossier_in)
+	listing.sort()
 	images=[]
 	for infile in listing:
 		nom_image= infile
